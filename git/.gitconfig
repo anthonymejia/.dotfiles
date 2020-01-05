@@ -1,0 +1,7 @@
+[push]
+	default = simple
+[user]
+	name = Anthony Mejia
+	email = amejia@novetta.com
+[url "git@github.com:"] 
+	insteadOf = https://github.com/
