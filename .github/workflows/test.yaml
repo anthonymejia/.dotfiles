@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install stow
+      run: sudo apt-get install -y stow
+    - name: Run Install
+      run: make install
+    - name: Run Clean
+      run: make clean
