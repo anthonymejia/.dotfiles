@@ -1,0 +1,8 @@
+#!/bin/bash
+
+data=$(curl -Ss 'https://wttr.in/rdu?format=j1')
+
+temperature=$(echo $data | jq -r .current_condition[0].FeelsLikeF)
+condition=$(echo $data | jq -r .current_condition[0].weatherDesc[0].value)
+
+echo "  $condition $temperature °F"

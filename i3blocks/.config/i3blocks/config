@@ -1,16 +1,45 @@
-# Update time every 5 seconds
 [time]
-command=date +%T
+command=echo " $(date +%A\ %B\ %d\ %Y,\ %T)"
 interval=5
 
-# Guess the weather hourly
 [weather]
-command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+command=./scripts/weather
 interval=3600
 color=#A4C2F4
 
-# Query my default IP address only on startup
+[volume]
+command=./scripts/volume
+interval=once
+signal=1
+LONG_FORMAT="${SYMB}${VOL}%"
+DEFAULT_COLOR=#48C9B0
+
 [ip]
-command=hostname -i | awk '{ print "IP:" $1 }'
+command=hostname -i | awk '{ print " " $1 }'
 interval=once
 color=#91E78B
+
+[bandwidth]
+command=./scripts/bandwidth
+interface=enp4s0
+interval=600
+color=#BB8FCE
+
+[cpu]
+command=./scripts/cpu
+label= 
+interval=10
+color=#F1948A
+
+[memory]
+command=./scripts/memory
+label= 
+interval=30
+color=#F8C471
+
+[disk]
+command=./scripts/disk
+label= 
+dir=/
+interval=30
+color=#ABB2B9

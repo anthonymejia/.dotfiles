@@ -1,0 +1,8 @@
+#!/bin/bash
+
+data=$(speedtest-cli)
+
+down=$(echo "$data" | sed '7q;d' | awk '{print $2" "substr($3,0,2)}')
+up=$(echo "$data" | sed '9q;d' | awk '{print $2" "substr($3,0,2)}')
+
+echo " $down  $up"

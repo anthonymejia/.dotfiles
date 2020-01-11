@@ -98,6 +98,10 @@
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
 #tabspaces: 8
+font:
+  normal:
+    family: DejaVu Sans Mono
+    style: Regular
 
 # Font configuration
 #font:
