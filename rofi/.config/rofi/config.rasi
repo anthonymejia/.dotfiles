@@ -1,0 +1,4 @@
+configuration {
+	fullscreen: true;
+	theme: "theme.rasi";
+}
