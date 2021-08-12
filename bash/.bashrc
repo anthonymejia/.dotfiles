@@ -6,6 +6,8 @@ export EDITOR="vim"
 #Default Terminal
 export TERMINAL="alacritty"
 
+#Append multiple history
+export PROMPT_COMMAND='history -a'
 
 #If not running interactively, don't do anything
 [ -z "$PS1" ] && return
