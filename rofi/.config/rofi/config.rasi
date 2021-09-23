@@ -1,4 +1,1 @@
-configuration {
-	fullscreen: true;
-	theme: "theme.rasi";
-}
+@theme "theme.rasi"
