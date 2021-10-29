@@ -1,3 +1,9 @@
+[ether]
+command=./scripts/ethereum
+label=$ETH 
+interval=60
+color=#ABB2B9
+
 [time]
 command=echo " $(date +%A\ %B\ %d\ %Y,\ %T)"
 interval=5
