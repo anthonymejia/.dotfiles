@@ -1,3 +1,9 @@
+[spy]
+command=./scripts/spy
+label=$SPY 
+interval=60
+color=#ABB2B9
+
 [ether]
 command=./scripts/ethereum
 label=$ETH 

@@ -1,0 +1,1 @@
+curl -s 'https://query1.finance.yahoo.com/v10/finance/quoteSummary/SPY?modules=price' | jq -r '.quoteSummary.result[0].price.regularMarketPrice.fmt'
