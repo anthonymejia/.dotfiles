@@ -27,7 +27,7 @@ HISTFILESIZE=2000
 stty -ixon
 
 #Add .dotfiles path for executables
-export PATH=$PATH:$HOME/.dotfiles/.bin:$HOME/bin/Sencha/Cmd
+export PATH=$PATH:$HOME/.dotfiles/.bin:$HOME/bin:$HOME/go/bin
 
 #Colors
 export TERM=xterm-256color
@@ -49,6 +49,9 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# Enable direenv
+eval "$(direnv hook bash)"
 
 #Terminal Prompt
 export PS1="\[\033[38;5;32m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;13m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;148m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;202m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"

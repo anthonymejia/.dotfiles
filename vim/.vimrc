@@ -4,21 +4,27 @@ filetype off
 " Allow people to load this vimrc with vim -u
 set nocompatible              
 
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'scrooloose/syntastic'
-Plugin 'prettier/vim-prettier'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'flazz/vim-colorschemes'
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-call vundle#end()
+call plug#begin()
+
+Plug 'fatih/vim-go'
+Plug 'prettier/vim-prettier'
+Plug 'w0rp/ale'
+Plug 'flazz/vim-colorschemes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
+
+call plug#end()
 
 " Turn filetype detection back on
 filetype plugin indent on
@@ -55,8 +61,8 @@ set cursorline
 set expandtab
 
 " Show tabs
-set list
-set listchars=tab:>-
+"set list
+"set listchars=tab:>-
 
 " Quick escape
 imap jk <esc>
@@ -64,20 +70,7 @@ imap jk <esc>
 " Reload open file if changed
 set autoread
 
-" Show syntastic errors in buffer
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Vim syntastic flags
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_args = ['--fix']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-
-"Vim go flags
+" Vim go flags
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -95,6 +88,26 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_version_warning = 0
 
+" Coc
+" " Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Ale
+let b:ale_fixers = ['prettier', 'eslint']
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
+
+" Copilot
+let g:copilot_node_command = "/home/amejia/bin/node-v17.9.1-linux-x64/bin/node"
 
 " Reopening a file at same line closed on
 if has("autocmd")
