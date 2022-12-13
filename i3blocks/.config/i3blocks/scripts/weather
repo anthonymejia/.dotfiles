@@ -2,7 +2,7 @@
 
 data=$(curl -Ss 'https://wttr.in/tpa?format=j1')
 
-temperature=$(echo $data | jq -r .current_condition[0].FeelsLikeF)
+temperature=$(echo $data | jq -r .current_condition[0].temp_F)
 condition=$(echo $data | jq -r .current_condition[0].weatherDesc[0].value)
 
 echo "  $condition $temperature °F"
